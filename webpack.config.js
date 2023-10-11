@@ -12,5 +12,14 @@ module.exports = {
       src: path.resolve(__dirname, 'src'),
     }
   },
-  devtool: 'inline-source-map'
-}
+  devtool: 'inline-source-map',
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'public')
+    },
+    historyApiFallback: true,
+    compress: true,
+    hot: true,
+    port: 1337,
+  },
+};
