@@ -1,10 +1,12 @@
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public')
+    path: path.resolve(__dirname, 'build'),
+    clean: true,
   },
   resolve: {
     extensions: ['.jsx', '.js'],
@@ -15,7 +17,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'public')
+      directory: path.resolve(__dirname, 'build')
     },
     historyApiFallback: true,
     compress: true,
@@ -33,4 +35,9 @@ module.exports = {
       }
     ],
   },
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{from: 'public'}]
+    }),
+  ],
 };
